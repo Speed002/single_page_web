@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Split Website Template</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        display: flex;
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        height: 100%;
+    }
+    .image {
+        position: relative; /* Make the image div a positioned parent for the button */
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+        min-height: 200px; /* Set a minimum height for the image */
+        overflow: hidden; /* Ensure button doesn't overflow */
+    }
+    .top-right-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1; /* Ensure the button appears above the image */
+        background-color: #007bff; /* Blue background color */
+        color: #fff; /* White text color */
+        border: none; /* Remove button border */
+        padding: 8px 12px; /* Adjust padding for better appearance */
+        border-radius: 4px; /* Add border radius for rounded corners */
+        cursor: pointer; /* Change cursor to pointer on hover */
+        transition: background-color 0.3s ease; /* Smooth transition for background color */
+    }
+
+    .top-right-button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    .content {
+        flex: 1;
+        padding: 20px;
+    }
+    .hide {
+        display: none;
+    }
+    .fade-in {
+        opacity: 1;
+    }
+    @media screen and (min-width: 768px) {
+        .container {
+            flex-direction: row; /* Align items in a row on larger screens */
+        }
+        .image {
+            flex: 1;
+            min-height: auto;
+        }
+        .content {
+            flex: 1;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="image" id="image1" style="background-image: url('images/wall.jpg');">
+        <button class="top-right-button">Button</button>
+    </div>
+    <div class="image hide" id="image2" style="background-image: url('images/wall2.jpg');">
+        <button class="top-right-button">Button</button>
+    </div>
+    <div class="image hide" id="image3" style="background-image: url('images/wall3.jpg');">
+        <button class="top-right-button">Button</button>
+    </div>
+    <div class="content" id="content1">
+        <h1>Content Section 1</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper elit et nunc vehicula, vel bibendum odio dapibus. Nullam id ex sed libero eleifend tempus. Cras commodo pharetra diam vitae dignissim. Suspendisse rutrum elit id diam interdum, et auctor orci vehicula. In non vehicula mi. Mauris semper felis at dictum faucibus.</p>
+        <p>This is the description of content section 3. You can add any relevant information here.</p>
+        <a href="#" class="button">Button 3</a>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper elit et nunc vehicula, vel bibendum odio dapibus. Nullam id ex sed libero eleifend tempus. Cras commodo pharetra diam vitae dignissim. Suspendisse rutrum elit id diam interdum, et auctor orci vehicula. In non vehicula mi. Mauris semper felis at dictum faucibus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper elit et nunc vehicula, vel bibendum odio dapibus. Nullam id ex sed libero eleifend tempus. Cras commodo pharetra diam vitae dignissim. Suspendisse rutrum elit id diam interdum, et auctor orci vehicula. In non vehicula mi. Mauris semper felis at dictum faucibus.</p>
+    </div>
+    <div class="content hide" id="content2">
+        <h1>Content Section 2</h1>
+        <p>Integer nec felis id velit aliquam euismod. Donec viverra felis at justo condimentum, ac feugiat nisl posuere. Sed ultricies magna at lectus efficitur, vitae molestie mi gravida. In tincidunt est sit amet ligula consectetur, id varius nisl eleifend. Ut scelerisque nunc ut tristique tempus.</p>
+    </div>
+    <div class="content hide" id="content3">
+        <h1>Content Section 3</h1>
+        <p>Vestibulum eget dolor non sapien mollis fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed quis sollicitudin magna. Curabitur sed dolor at magna ultricies feugiat. Aliquam scelerisque felis quis urna efficitur, eget aliquet lorem faucibus. Nullam suscipit felis sit amet sapien suscipit, a ullamcorper lectus sodales.</p>
+    </div>
+</div>
+
+<script>
+    let scrollTicks = 0;
+    const threshold = 3; // Change this threshold as needed
+
+    window.addEventListener('wheel', (event) => {
+        // Detect scroll wheel movement
+        const deltaY = event.deltaY;
+
+        // Increment scrollTicks based on scroll direction
+        if (deltaY > 0) {
+            scrollTicks++;
+        } else if (deltaY < 0) {
+            scrollTicks--;
+        }
+
+        console.log('Scroll Ticks:', scrollTicks);
+
+        if (Math.abs(scrollTicks) >= threshold) {
+            // Perform action when scrollTicks reaches threshold
+            const content1 = document.getElementById('content1');
+            const content2 = document.getElementById('content2');
+            const content3 = document.getElementById('content3');
+            const image1 = document.getElementById('image1');
+            const image2 = document.getElementById('image2');
+            const image3 = document.getElementById('image3');
+
+            if (scrollTicks > 0) {
+                // Scroll down action
+                if (!content2.classList.contains('hide')) {
+                    content2.classList.add('hide');
+                    content2.classList.remove('fade-in'); // Remove fade-in effect before hiding
+                    content3.classList.remove('hide');
+                    content3.classList.add('fade-in'); // Apply fade-in effect after showing
+                    image2.classList.add('hide');
+                    image3.classList.remove('hide');
+                    console.log('Switched to Content 3');
+                } else if (!content1.classList.contains('hide')) {
+                    content1.classList.add('hide');
+                    content1.classList.remove('fade-in');
+                    content2.classList.remove('hide');
+                    content2.classList.add('fade-in');
+                    image1.classList.add('hide');
+                    image2.classList.remove('hide');
+                    console.log('Switched to Content 2');
+                }
+            } else {
+                // Scroll up action
+                if (!content2.classList.contains('hide')) {
+                    content2.classList.add('hide');
+                    content2.classList.remove('fade-in');
+                    content1.classList.remove('hide');
+                    content1.classList.add('fade-in');
+                    image2.classList.add('hide');
+                    image1.classList.remove('hide');
+                    console.log('Switched to Content 1');
+                } else if (!content3.classList.contains('hide')) {
+                    content3.classList.add('hide');
+                    content3.classList.remove('fade-in');
+                    content2.classList.remove('hide');
+                    content2.classList.add('fade-in');
+                    image3.classList.add('hide');
+                    image2.classList.remove('hide');
+                    console.log('Switched to Content 2');
+                }
+            }
+
+            // Reset scrollTicks after action
+            scrollTicks = 0;
+        }
+    });
+</script>
+</body>
+</html>

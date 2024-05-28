@@ -1,0 +1,39 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+.container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically on smaller screens */
+  height: 100%;
+}
+.image {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  min-height: 200px; /* Set a minimum height for the image */
+}
+.content {
+  flex: 1;
+  padding: 20px;
+}
+.hide {
+  display: none;
+}
+.fade-in {
+  opacity: 1;
+}
+@media screen and (min-width: 768px) {
+  .container {
+      flex-direction: row; /* Align items in a row on larger screens */
+  }
+  .image {
+      flex: 1;
+      min-height: auto;
+  }
+  .content {
+      flex: 1;
+  }
+}
