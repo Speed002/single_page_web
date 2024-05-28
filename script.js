@@ -40,6 +40,7 @@ window.addEventListener('wheel', (event) => {
                 content4.classList.add('fade-in');
                 image3.classList.add('hide');
                 image4.classList.remove('hide');
+
             } else if (!content4.classList.contains('hide')) {
                 content4.classList.add('hide');
                 content4.classList.remove('fade-in');
@@ -47,6 +48,7 @@ window.addEventListener('wheel', (event) => {
                 content5.classList.add('fade-in');
                 image4.classList.add('hide');
                 image5.classList.remove('hide');
+
             } else if (!content1.classList.contains('hide')) {
                 content1.classList.add('hide');
                 content1.classList.remove('fade-in');
@@ -85,6 +87,7 @@ window.addEventListener('wheel', (event) => {
                 content4.classList.add('fade-in');
                 image5.classList.add('hide');
                 image4.classList.remove('hide');
+
             }
         }
 
