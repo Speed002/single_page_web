@@ -10,11 +10,31 @@ body, html {
   height: 100%;
 }
 .image {
+  position: relative; /* Make the image div a positioned parent for the button */
   flex: 1;
   background-size: cover;
   background-position: center;
   min-height: 200px; /* Set a minimum height for the image */
+  overflow: hidden; /* Ensure button doesn't overflow */
 }
+.top-right-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1; /* Ensure the button appears above the image */
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  border: none; /* Remove button border */
+  padding: 8px 12px; /* Adjust padding for better appearance */
+  border-radius: 4px; /* Add border radius for rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.top-right-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
 .content {
   flex: 1;
   padding: 20px;
